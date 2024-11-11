@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 def caesar_cipher(str, num)
-  alphabet = ("a".."z").to_a
-  result = ""
-  
+  alphabet = ('a'..'z').to_a
+  result = ''
+
   str.each_char do |char|
-    if letter?(char)
-      result += shift_char(char, num, alphabet)
-    else
-      result += char
-    end
+    result += if letter?(char)
+                shift_char(char, num, alphabet)
+              else
+                char
+              end
   end
 
   result
