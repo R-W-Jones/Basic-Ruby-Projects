@@ -1,4 +1,4 @@
-dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
+dictionary = %w[below down go going horn how howdy it i low own part partner sit]
 
 def substrings(input, dictionary)
   input = input.downcase
@@ -14,5 +14,3 @@ def substrings(input, dictionary)
 end
 
 p substrings("Howdy partner, sit down! How's it going?", dictionary)
-
-
