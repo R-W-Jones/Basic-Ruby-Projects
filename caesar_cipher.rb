@@ -1,20 +1,34 @@
-def chiper(str, num)
-  upcase = ('A'..'Z').to_a
-  lowcase = ('a'..'z').to_a
-  encrypted = ''
-
-  str.chars do |char|
-    if upcase.include?(upcase)
-      new_index = (upcase.index(char) + num) % 26
-      encrypted += upcase[new_index]
-    elsif lowcase.include?(char)
-      new_index = (lowcase.index(char) + num) % 26
-      encrypted += lowcase[new_index]
+def caesar_cipher(str, num)
+  alphabet = ("a".."z").to_a
+  result = ""
+  
+  str.each_char do |char|
+    if letter?(char)
+      result += shift_char(char, num, alphabet)
     else
-      encrypted += char
+      result += char
     end
   end
-  encrypted
+
+  result
 end
 
-puts chiper('What a String!', 9)
+# Check if the character is a letter
+def letter?(char)
+  char.match?(/[a-zA-Z]/)
+end
+
+# Shift the character according to Caesar cipher logic
+def shift_char(char, num, alphabet)
+  new_char = find_new_char(char, num, alphabet)
+  new_char = new_char.upcase if char == char.upcase
+  new_char
+end
+
+# Find the new character after shifting
+def find_new_char(char, num, alphabet)
+  new_index = (alphabet.index(char.downcase) + num) % 26
+  alphabet[new_index]
+end
+
+puts caesar_cipher('What a String!', 9)
